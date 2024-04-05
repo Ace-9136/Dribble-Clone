@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd FrontEnd && npm install && npm run build && cd ../Backend && npm install && npm start",
+    "build": "cd FrontEnd && npm install && npm run build && cd ../Backend && npm install && cd ..",
+    "start": "cd Backend && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
