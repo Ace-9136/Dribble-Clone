@@ -50,7 +50,7 @@ const SignUp2 = ({ name, username, email, password, handleBackStep, onNext }) =>
                     <h2 className='step2h2'>Add an Avatar</h2>
                     <div className="avatar-container">
                         {avatar ? (
-                            <Image cloudName="dzv3xhyp1" publicId={avatar} style={{borderRadius:"50%", height:"50px", width: "50px"}}  />
+                            <Image cloudName="dzv3xhyp1" publicId={avatar} style={{borderRadius:"50%", height:"150px", width: "150px"}}  />
                         ) : (
                             <div className="blank-circle" style={{ width: "150px", height: "150px", borderRadius: "50%", backgroundColor: "lightgray" }}></div>
                         )}

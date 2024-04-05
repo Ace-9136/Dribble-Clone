@@ -5,8 +5,13 @@ import Logo from "../assets/Logo.png";
 import { Image, Transformation } from 'cloudinary-react';
 
 
-const Navbar = ({}) => {
-  const avatar = "https://res.cloudinary.com/dzv3xhyp1/image/upload/v1712155145/arrbrukqn39bc9pxvsez.jpg";
+const Navbar = ({user}) => {
+
+  const handleLogout=()=>{
+    localStorage.setItem('isUserSignedUp', false); 
+    window.location.reload();
+  }
+
   return (
     <nav className="navbar">    
         <div className='left'>
@@ -31,11 +36,14 @@ const Navbar = ({}) => {
           <input type="text" className="nav-Link nav-search" placeholder="Search" />
         </div>
         <div className="nav-item">
-          <Image cloudName="dzv3xhyp1" publicId={avatar} style={{borderRadius:"50%", height:"50px", width: "50px", marginLeft:"10px"}}>
+          <Image cloudName="dzv3xhyp1" publicId={user.avatar} style={{borderRadius:"50%", height:"50px", width: "50px", marginLeft:"10px"}}>
         </Image>
         </div>
         <div className="nav-item">
           <button className="nav-button">Upload</button>
+        </div>
+        <div className="nav-item">
+          <button className="nav-button" onClick={handleLogout}>Logout</button>
         </div>
         </div>
     </nav>
