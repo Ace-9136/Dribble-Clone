@@ -10,7 +10,7 @@ const path = require('path');
 const resend = new Resend(process.env.ResendApiKey);
 const app = express();
 const website = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -80,7 +80,7 @@ async function startServer() {
 }
 
 website.listen(8000, () => {
-  console.log(`Server started on 8000`);
+  console.log(`Website started on 8000`);
 });
 
 startServer();

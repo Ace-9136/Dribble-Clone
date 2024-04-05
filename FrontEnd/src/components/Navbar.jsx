@@ -9,23 +9,24 @@ const Navbar = ({user}) => {
 
   const handleLogout=()=>{
     localStorage.setItem('isUserSignedUp', false); 
+    localStorage.setItem('username', null); 
     window.location.reload();
   }
 
   return (
     <nav className="navbar">    
         <div className='left'>
-      <Link to="/" className="navbar-logo" >
-        <img src={Logo} className='logo' alt="Dribbble Logo" />  {/* Replace with your Dribbble logo image */}
+      <Link to="/home" className="navbar-logo" >
+        <img src={Logo} className='logo' alt="Dribbble Logo" /> 
       </Link>
         <div className="nav-item">
-          <Link to="/inspiration" className="nav-Link">Inspiration</Link>
+          <Link to="/home" className="nav-Link">Inspiration</Link>
         </div>
         <div className="nav-item">
-          <Link to="/find-work" className="nav-Link">Find Work</Link>
+          <Link to="/home" className="nav-Link">Find Work</Link>
         </div>
         <div className="nav-item">
-          <Link to="/learn-design" className="nav-Link">Learn Design</Link>
+          <Link to="/home" className="nav-Link">Learn Design</Link>
         </div>
         <div className="nav-item">
           <Link className="nav-Link">Go Pro</Link>

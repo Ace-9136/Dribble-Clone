@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import SignUp1 from '../components/SignUp1';
 import SignUp2 from '../components/SignUp2';
 import SignUp3 from '../components/SignUp3';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import axios from 'axios'; 
 
 const MainSignUp = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
 
@@ -15,16 +14,12 @@ const MainSignUp = () => {
     setFormData((prevData) => ({ ...prevData, ...data }));  
     setStep(step + 1); 
   };
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   const handleBackStep = () => {
     setStep(step - 1); 
   };
 
   const handleSubmitForm = async (data) => {
-    // Include selectedOption in form data
     const updatedFormData = { ...formData, ...data };
   
     try {
@@ -33,18 +28,17 @@ const MainSignUp = () => {
       
       if (response.status === 201) {
         localStorage.setItem('isUserSignedUp', true);
+        localStorage.setItem('username', response.data.username);
         navigate('/home', {
           replace: true,
-          state: { username: response.data.username }
         });
       } else {
         throw new Error('Failed to sign up');
-        // Or you can throw an error with the actual message from the backend
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to sign up. Please try again.'); // Show an alert for the error
-      navigate('/'); // Navigate back to the '/' route
+      alert('Failed to sign up. Please try again.'); 
+      navigate('/'); 
     }
   };
   
