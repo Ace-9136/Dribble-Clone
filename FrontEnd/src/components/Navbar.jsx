@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import "../styles/Home.css"
 import Logo from "../assets/Logo.png";
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 
 
 const Navbar = ({user}) => {

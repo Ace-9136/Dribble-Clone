@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SignUp1 from '../components/SignUp1';
 import SignUp2 from '../components/SignUp2';
 import SignUp3 from '../components/SignUp3';
-import { useNavigate} from 'react-router-dom';
-import axios from 'axios'; 
+import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 
 const MainSignUp = () => {
   const navigate = useNavigate();
@@ -11,37 +12,32 @@ const MainSignUp = () => {
   const [formData, setFormData] = useState({});
 
   const handleNextStep = (data) => {
-    setFormData((prevData) => ({ ...prevData, ...data }));  
-    setStep(step + 1); 
+    setFormData((prevData) => ({ ...prevData, ...data }));
+    setStep(step + 1);
   };
 
   const handleBackStep = () => {
-    setStep(step - 1); 
+    setStep(step - 1);
   };
 
   const handleSubmitForm = async (data) => {
     const updatedFormData = { ...formData, ...data };
-  
+
     try {
-      const response = await axios.post('http://localhost:3000/api/userprofile', updatedFormData);
-      console.log('Response from backend:', response.data);
-      
+      const response = await axios.post(`${API_BASE_URL}/userprofile`, updatedFormData);
       if (response.status === 201) {
-        localStorage.setItem('isUserSignedUp', true);
+        localStorage.setItem('isUserSignedUp', 'true');
         localStorage.setItem('username', response.data.username);
-        navigate('/home', {
-          replace: true,
-        });
+        navigate('/home', { replace: true });
       } else {
         throw new Error('Failed to sign up');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to sign up. Please try again.'); 
-      navigate('/'); 
+      alert('Failed to sign up. Please try again.');
+      navigate('/');
     }
   };
-  
 
   return (
     <div className="three-step-form">

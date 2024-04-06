@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/SignUp.css';
 import Logo from "../assets/Logo.png";
 import { Image } from 'cloudinary-react';
@@ -8,35 +8,36 @@ const SignUp2 = ({ name, username, email, password, handleBackStep, onNext }) =>
     const [avatar, setAvatar] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
     const [location, setLocation] = useState('');
-    const [isUploading, setIsUploading] = useState(false); // New state for loading indicator
+    const [isUploading, setIsUploading] = useState(false);
 
-    
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (isUploading) {
-          alert('Please wait while the image is being uploaded.'); // Alert user to wait for upload
-          return;
-      }
-        onNext({ avatar, location });
-    }
+            alert('Please wait while the image is being uploaded.');
+            return;
+        }
+
+        await onNext({ avatar, location });
+    };
 
     const uploadImage = async () => {
-      setIsUploading(true); // Set loading state to true during upload
-      const formData1 = new FormData();
-      formData1.append('file', selectedImage);
-      formData1.append('upload_preset', 'nzot2ovg');
+        setIsUploading(true);
 
-      try {
-          const response = await axios.post('https://api.cloudinary.com/v1_1/dzv3xhyp1/image/upload', formData1);
-          setAvatar(response.data.secure_url);
-      } catch (error) {
-          console.error('Error uploading image:', error);
-          console.log('Cloudinary error response:', error.response);
-      } finally {
-          setIsUploading(false); // Set loading state to false after upload completes
-      }
-  };
+        const formData = new FormData();
+        formData.append('file', selectedImage);
+        formData.append('upload_preset', 'nzot2ovg');
+
+        try {
+            const response = await axios.post('https://api.cloudinary.com/v1_1/dzv3xhyp1/image/upload', formData);
+            setAvatar(response.data.secure_url);
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            alert('Failed to upload image. Please try again.');
+        } finally {
+            setIsUploading(false);
+        }
+    };
 
     return (
         <div className='signup3-main'>
@@ -62,7 +63,9 @@ const SignUp2 = ({ name, username, email, password, handleBackStep, onNext }) =>
                                 onChange={(e) => setSelectedImage(e.target.files[0])}
                                 required
                             />
-                            <button onClick={uploadImage} className='uploadBtn' disabled={isUploading}>{isUploading ? 'Uploading...' : 'Upload Image'}</button>
+                            <button onClick={uploadImage} className='uploadBtn' disabled={isUploading}>
+                                {isUploading ? 'Uploading...' : 'Upload Image'}
+                            </button>
                         </div>
                     </div>
                     <h2 className='step2h2'>Add your location</h2>

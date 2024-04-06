@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/SignUp.css';
 import Logo from "../assets/Logo.png";
 import Card from './Card';
@@ -6,18 +6,19 @@ import option1 from "../assets/option1.png";
 import option2 from "../assets/option2.png";
 import option3 from "../assets/option3.png";
 
-const SignUp3 = ({ handleBackStep, onSubmit, formData }) => {
+const SignUp3 = ({ handleBackStep, onSubmit }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
-  useEffect(() => {
-    console.log(selectedOption);
-  },[selectedOption]);
 
   const handleFormSubmit = () => {
-    // Add the selected option to the form data
+    if (!selectedOption) {
+      console.error('Please select an option before submitting.');
+      return;
+    }
+
     onSubmit({ selectedOption });
   };
   
