@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import LeftSide from "../assets/leftside.png";
 import '../styles/SignUp.css';
 import axios from 'axios';
-import { API_BASE_URL } from '../../config';
 
 const SignUp1 = ({ onNext }) => {
   const [name, setName] = useState('');
@@ -11,6 +10,7 @@ const SignUp1 = ({ onNext }) => {
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   const handleUsernameChange = async (e) => {
     const newUsername = e.target.value;

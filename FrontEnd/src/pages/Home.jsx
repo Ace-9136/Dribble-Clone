@@ -4,7 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import emailImage from '../assets/email.png';
 import '../styles/Home.css';
-import { API_BASE_URL } from '../../config';
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Home = () => {
   const navigate = useNavigate();

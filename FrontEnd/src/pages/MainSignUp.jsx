@@ -4,7 +4,7 @@ import SignUp1 from '../components/SignUp1';
 import SignUp2 from '../components/SignUp2';
 import SignUp3 from '../components/SignUp3';
 import axios from 'axios';
-import { API_BASE_URL } from '../../config';
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const MainSignUp = () => {
   const navigate = useNavigate();
