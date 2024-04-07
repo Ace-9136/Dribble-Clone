@@ -41,7 +41,7 @@ const MainSignUp = () => {
 
   return (
     <div className="three-step-form">
-      {step === 1 && <SignUp3 onNext={handleNextStep} />}
+      {step === 1 && <SignUp1 onNext={handleNextStep} />}
       {step === 2 && (
         <SignUp2
           onNext={handleNextStep}
