@@ -30,21 +30,3 @@ h1 {
   font-size: 3.1 em;
   line-height: 1.1;
 }
-
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a{
-    color:rgb(90,90,90);
-  }
-  a:hover {
-    color: #a90044;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
