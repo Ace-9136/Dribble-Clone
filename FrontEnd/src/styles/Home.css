@@ -28,6 +28,50 @@
     margin: 4px 0;
   }
   
+  .navbar {
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0;
+    width: 100%; 
+    overflow-x: hidden; 
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 10px 0px 10px;
+  }
+  
+  .nav-item {
+    margin-right: 5px;
+    color: rgb(90, 90, 90);
+}
+
+.nav-button {
+    padding-right: 20px; 
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    margin: 0px 10px 0px 10px;
+}
+
+.logo {
+    max-width: 150px;
+  }
+  
+  .nav-button {
+      max-width: 100px;
+      padding: 15px;
+      font-size: 16px;
+    }
+    input[type='text']{
+    max-width: 80%;
+  }
+  
   @media (max-width: 768px) {
     .hamburger-menu {
       display: block; /* Show on mobile devices */
@@ -46,63 +90,18 @@
     .sidebar .nav-item {
       margin-bottom: 10px;
     }
-  }
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 0; /* Remove right margin */
-    width: 100%; /* Make navbar span full width */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-  }
-  
-  .left {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 10px 0px 10px;
-  }
-  
-  .nav-item {
-    margin-right: 5px;
-    color: rgb(90, 90, 90);
-  }
-  
-  .nav-button {
-    padding-right: 20px; 
-  }
-  
-  .right {
-    display: flex;
-    align-items: center;
-    margin: 0px 10px 0px 10px;
-  }
-  
-  .logo {
-    max-width: 150px;
-  }
-  
-  .nav-button {
-    max-width: 100px;
-    padding: 15px;
-    font-size: 16px;
-  }
-  input[type='text']{
-    max-width: 80%;
-  }
-
-  @media (max-width: 768px) {
     .navbar {
-      flex-direction: column;
-      align-items: stretch; 
-    }
-
-    .email-verification{
-        max-width: 80%;
-    }
-    input[type='text']{
-        max-width: 90%;
+        flex-direction: column;
+        align-items: stretch; 
       }
+  
+      .email-verification{
+          max-width: 80%;
+      }
+      input[type='text']{
+          max-width: 90%;
+        }
   }
+
   
   

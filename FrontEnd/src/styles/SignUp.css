@@ -24,6 +24,10 @@
     justify-content: space-between;
   }
   
+  .first, .last{
+    max-width: 45%;
+  }
+
   label {
     font-weight: bold;
   }
@@ -102,10 +106,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    max-width: 90%;
+    max-width: 100%;
   }
   .signup2-container{
-    max-width: 90%; /* Adjusting container width for better mobile responsiveness */
+    max-width: 100%; /* Adjusting container width for better mobile responsiveness */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -133,7 +137,7 @@
   }
   
   .step2Btn {
-    width: 80%; 
+    width: 100%; 
     margin-top: 10px; 
   }
   .step2h2{
@@ -147,7 +151,7 @@
     padding: 20px;
     justify-content: space-between;
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   
   .optionImg {
@@ -174,6 +178,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
   }
   
   .card.selected {
@@ -190,7 +195,9 @@
     border: 1px solid #ccc;
     border-radius: 15px;
     transition: border-color 0.3s ease-in-out;
+    margin-bottom: 20px;
   }
+
   
   .cardContent {
     color: black;
@@ -206,11 +213,23 @@
   }
   
   .leftSide {
-    display: none; /* Hide left side division on mobile */
+    display: none; 
   }
   
   .rightSide {
     width: 100%;
+  }
+
+  @media (max-width: 768px){
+    .form2{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-container{
+      margin-bottom: 10px;
+    }
   }
   
   @media only screen and (min-width: 768px) {
@@ -234,7 +253,7 @@
       margin-top: 20px;
     }
     .step2Btn {
-      width: 40%; 
+      width: 45%; 
       margin-top: 10px; 
     }
     .signup2-container{
@@ -246,6 +265,10 @@
     .card-container{
       flex-direction: row;
     }
+    .first,.last{
+      max-width: 100%;
+    }
+    
   }
   
   

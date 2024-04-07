@@ -47,7 +47,7 @@ const SignUp2 = ({ name, username, email, password, handleBackStep, onNext }) =>
             <div className='signup2-container'>
                 <h1>Welcome! Let's create your profile</h1>
                 <p>Let others get to know you better! You can do these later</p>
-                <form onSubmit={handleSubmit}>
+                <form  className="form2" onSubmit={handleSubmit}>
                     <h2 className='step2h2'>Add an Avatar</h2>
                     <div className="avatar-container">
                         {avatar ? (
