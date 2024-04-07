@@ -40,7 +40,7 @@ const SignUp2 = ({ name, username, email, password, handleBackStep, onNext }) =>
     };
 
     return (
-        <div className='signup3-main'>
+        <div className='signup2-main'>
             <div className='header'>
                 <img src={Logo} alt="Logo" className='Logo' />
             </div>

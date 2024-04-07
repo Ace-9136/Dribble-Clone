@@ -1,10 +1,10 @@
 /* src/components/LoginPage.css */
 
 .login-container {
-    width: 500px;
-    margin: 100px auto;
-    padding: 20px;
-  }
+  max-width: 90%; /* Adjusting container width for better mobile responsiveness */
+  margin: 25%;
+}
+
   
   .login-form {
     display: flex;
@@ -102,31 +102,39 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    max-width: 90%;
   }
   .signup2-container{
-    max-width: 60% !important;
+    max-width: 90%; /* Adjusting container width for better mobile responsiveness */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
   .avatar-container{
-    display: flex;
+    display: block;
   }
   .fileSelector{
     display: flex;
     flex-direction: column;
-    margin-left: 40px;
+    max-width: 60%;
+    margin-top: 20px;
   }
   .uploadBtn{
     margin-top: 10px;
     padding:10px;
     font-size: 14px;
   }
-  .btncontainer{
-    display: flex;
-    justify-content: space-between;
-    padding:20px;
-    margin-top: 20px;
+  .btncontainer {
+    flex-direction: column; 
+    align-items: center; 
+    margin-top: 20px; 
   }
-  .step2Btn{
-    width: 200px;
+  
+  .step2Btn {
+    width: 80%; 
+    margin-top: 10px; 
   }
   .step2h2{
     margin-top: 30px;
@@ -134,6 +142,7 @@
 
   .card-container {
     display: flex;
+    flex-direction: column;
     max-width: 90%;
     padding: 20px;
     justify-content: space-between;
@@ -176,7 +185,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 30%;
+    max-width: 90%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
@@ -188,4 +197,55 @@
     font-size: 16px;
     font-weight: bold;
   }
+
+  .signup1-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .leftSide {
+    display: none; /* Hide left side division on mobile */
+  }
+  
+  .rightSide {
+    width: 100%;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .leftSide {
+      display: block;
+      width: 50%;
+    }
+  
+    .rightSide {
+      width: 50%;
+    }
+    .avatar-container{
+      display: flex;
+      justify-content: space-between;
+    }
+    .btncontainer{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding:20px;
+      margin-top: 20px;
+    }
+    .step2Btn {
+      width: 40%; 
+      margin-top: 10px; 
+    }
+    .signup2-container{
+      max-width: 60% !important;
+    }
+    .card{
+      max-width: 30%;
+    }
+    .card-container{
+      flex-direction: row;
+    }
+  }
+  
   

@@ -29,6 +29,25 @@ app.post('/api/userprofile', async (req, res) => {
       subject: 'Dribble Verification',
       html: `<p>Welcome to dribble <strong>${userProfile.name}</strong>!</p>`
     });
+    console.log(`Email sent to ${userProfile.email}`);
+    res.status(201).json(userProfile);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.post('/api/userprofile2', async (req, res) => {
+  try {
+    const userProfile = req.body;
+    console.log(`Email sent to ${userProfile.email}`);
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: userProfile.email,
+      subject: 'Dribble Verification',
+      html: `<p>Welcome to dribble <strong>${userProfile.name}</strong>!</p>`
+    });
+    console.log(`Email sent to ${userProfile.email}`);
     res.status(201).json(userProfile);
   } catch (err) {
     console.error(err);
@@ -62,9 +81,9 @@ app.get('/api/userInformation/:username', async (req, res) => {
   }
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../FrontEnd/dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../FrontEnd/dist', 'index.html'));
+// });
 
 // Start the server
 async function startServer() {
