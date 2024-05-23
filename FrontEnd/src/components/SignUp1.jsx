@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import LeftSide from "../assets/leftside.png";
+import { useNavigate } from 'react-router-dom';
 import '../styles/SignUp.css';
 import axios from 'axios';
 
 const SignUp1 = ({ onNext }) => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -36,6 +38,11 @@ const SignUp1 = ({ onNext }) => {
       setErrorMsg('Accept terms and conditions');
     } else {
       try {
+        const emailExistsResponse = await axios.get(`${API_BASE_URL}/checkEmail/${email}`);
+        if (emailExistsResponse.data.exists) {
+          setErrorMsg('Email Already Exists');
+          return; // Stop execution if email already exists
+        }
         await onNext({ name, username, email, password });
       } catch (error) {
         console.error('Error signing up:', error);
@@ -43,6 +50,9 @@ const SignUp1 = ({ onNext }) => {
       }
     }
   };
+  const handleLogin = ()=>{
+    navigate('/login', { replace: true })
+  }
 
   return (
     <div className="signup1-main">
@@ -51,7 +61,7 @@ const SignUp1 = ({ onNext }) => {
       </div>
       <div className='rightSide'>
         <div className="login-container">
-          <p className="loginUrl">Already a member? <a>Sign In</a></p>
+          <p className="loginUrl">Already a member? <a onClick={handleLogin}>Sign In</a></p>
           <h2>Sign up to Dribble</h2>
           <form onSubmit={handleSubmit} className="login-form">
             {errorMsg && <p className="error">• {errorMsg}</p>}
@@ -75,6 +85,7 @@ const SignUp1 = ({ onNext }) => {
                   type="text"
                   id="username"
                   placeholder='John96'
+                  style={{ maxWidth: "100%"}}
                   value={username}
                   onChange={handleUsernameChange}
                   required
@@ -112,7 +123,7 @@ const SignUp1 = ({ onNext }) => {
                   checked={terms}
                   onChange={(e) => setTerms(e.target.checked)}
                 />
-                Creating an account means you're okay with our <a><b>Terms of Service</b></a>, <a><b>Privacy Policy</b></a>, and our default Notification Settings.
+                Creating an account means you&apos;re okay with our <a><b>Terms of Service</b></a>, <a><b>Privacy Policy</b></a>, and our default Notification Settings.
               </label>
             </div>
             <button type="submit">Create Account</button>

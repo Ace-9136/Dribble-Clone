@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainSignUp from "./pages/MainSignUp";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import './App.css';
 
 function App() {
@@ -10,9 +10,10 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<Home/>} />
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home /> } />
-          <Route exact path="/signup" element={<MainSignUp />} />
+          <Route path="/signup" element={<MainSignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </Router>

@@ -1,7 +1,7 @@
 /* src/components/LoginPage.css */
 
 .login-container {
-  max-width: 90%; /* Adjusting container width for better mobile responsiveness */
+  width: 90%; /* Adjusting container width for better mobile responsiveness */
   margin: 25%;
 }
 
@@ -9,6 +9,7 @@
   .login-form {
     display: flex;
     flex-direction: column;
+    width: 90%;
   }
 
   .error{

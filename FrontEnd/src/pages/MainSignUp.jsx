@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignUp1 from '../components/SignUp1';
 import SignUp2 from '../components/SignUp2';

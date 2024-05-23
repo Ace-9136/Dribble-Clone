@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { Resend } = require('resend');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const User = require('./models/User');
@@ -22,7 +23,19 @@ app.use(express.static(path.join(__dirname, '../FrontEnd/dist')));
 // Handle API routes
 app.post('/api/userprofile', async (req, res) => {
   try {
-    const userProfile = await User.create(req.body);
+    const { username, email, password, ...userProfileData } = req.body;
+    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+    if (existingUser) {
+      if (existingUser.username === username) {
+        return res.status(400).json({ error: 'Username already exists' });
+      } else if (existingUser.email === email) {
+        return res.status(400).json({ error: 'Email already exists' });
+      }
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const userProfile = await User.create({ ...userProfileData, password: hashedPassword, email, username });
+
     await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: userProfile.email,
@@ -36,13 +49,45 @@ app.post('/api/userprofile', async (req, res) => {
   }
 });
 
+app.post('/api/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({
+      $or: [
+        { username: username },
+        { email: username }
+      ]
+    });
+    if (!user) {
+      return res.status(400).json({ error: 'User does not exist' });
+    }
 
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ error: 'Incorrect password' });
+    }
 
+    res.status(200).json({ username: user.username, message: 'Login successful' });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 app.get('/api/checkUsername/:username', async (req, res) => {
   try {
     const { username } = req.params;
     const existingUser = await User.findOne({ username });
+    res.json({ exists: !!existingUser });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+app.get('/api/checkEmail/:email', async (req, res) => {
+  try {
+    const { email } = req.params;
+    const existingUser = await User.findOne({ email });
     res.json({ exists: !!existingUser });
   } catch (err) {
     console.error(err);
